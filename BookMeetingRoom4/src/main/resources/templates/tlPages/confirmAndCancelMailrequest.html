@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="headerfiles">
+<title>Introduction to SpringBoot Security</title>
+<meta charset="UTF-8" />
+
+<link th:href="@{/tableFormat.css}" rel="stylesheet">
+<style>
+.main{
+margin-left:50px;
+}
+
+.pagination {
+	display: inline-block;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+}
+
+.pagination a.active {
+	background-color: #4CAF50;
+	color: white;
+	border-radius: 5px;
+}
+
+.pagination a:hover:not (.active ) {
+	background-color: #ddd;
+	border-radius: 5px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"> </script>
+<script type="text/javascript">
+function idForm(){
+var selectvalue = $('input[name=choice]:checked', '#idForm').val();
+
+
+
+if(selectvalue == "All"){
+window.open('allMailRequser','_self');
+return true;
+}
+else if(selectvalue == "Pending"){
+window.open('/pendingMailRequser','_self');
+return true;
+}else if(selectvalue == 'Confirm'){
+window.open('/confirmMailRequser','_self');
+return true;
+}else if(selectvalue == 'Cancel'){
+window.open('cancelMailRequser','_self');
+return true;
+}
+return false;
+};
+
+
+</script>
+</head>
+<body>
+	<div th:insert="tlPages/tlHomeForAll"></div>
+	<div class="main" align="center">
+	<h3>
+		<p th:text="${message}" />
+	</h3>
+	
+<form id="idForm"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="All"/>All &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="Pending"/>Pending &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="Confirm"/>Confirm &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="Cancel"/>Cancel &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</form>
+	
+		    <br />
+		<br />     
+		<table border="1" cellpadding="10">
+			        
+			<thead>
+				            
+				<tr>
+					               
+					<th style="visibility:hidden;">Request ID</th>                 
+					<th>User_mail</th>                 
+					<th>New_User_mail</th>      
+					<th>Status</th>             
+				</tr>
+				        
+			</thead>
+			<tbody>
+				<tr th:each="emp :${mail}">
+
+					<td style="visibility:hidden;" th:text="${emp.mailrequest_id}">Booking ID</td>
+					<td th:text="${emp.user_mail}">Room ID</td>
+
+					<td th:text="${emp.new_user_mail}">User_mail</td>
+					<td th:text="${emp.status}">Status</td>
+
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+</body>
+</html>

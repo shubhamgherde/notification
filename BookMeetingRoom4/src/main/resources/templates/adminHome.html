@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<title>Book Meeting Room</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.w3-sidebar a {font-family: "Roboto", sans-serif}
+body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;
+}
+
+.notification {
+color: black;
+text-decoration: none;
+
+position: relative;
+top: 3px;
+right: 20px;
+display: inline-block;
+border-radius: 2px;
+}
+
+.profile{
+color: black;
+text-decoration: none;
+position: relative;
+
+top: 3px;
+right: 25px;
+display: inline-block;
+border-radius: 2px;
+
+} 
+
+.logshubhu{
+color: black;
+text-decoration: none;
+position: relative;
+
+top: 4px;
+right: 10px;
+display: inline-block;
+border-radius: 2px;
+
+} 
+
+
+.notification .badge {
+font-size:15px;
+position: absolute;
+top: -5px;
+right: -8px;
+padding: 2px 2px;
+border-radius: 50%;
+background-color: red;
+color: white;
+}
+
+</style>
+<body class="w3-content" style="max-width:1800px"> 
+
+
+<!-- Sidebar/menu -->
+<!-- Sidebar/menu -->
+
+<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
+<div class="w3-container w3-display-container w3-padding-16" style="background-color:#696969" >
+<i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+<h3 class="w3-wide"><b>MENU</b></h3>
+</div>
+
+<div class="w3-padding-64 w3-large w3-text-grey" style="background-color:#696969; min-height:700px" >
+<a class="w3-button w3-block w3-left-align"href="#" th:href="@{/adminHomeMain}"><font color="black">Home</a>
+<a onclick="myAccFunc1()" href="javascript:void(0)" class="w3-button w3-block w3-left-align" id="myBtn1" style="background-color:#696969" >
+User <i class="fa fa-caret-down"></i>
+</a>
+<div id="demoAcc1" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+<a href="#" th:href="@{/userManagement/1}" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>View Users</a>
+
+</div>
+
+
+<a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-left-align" id="myBtn"><font color="black">
+Room</font> <i class="fa fa-caret-down"></i>
+</a>
+<div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+<a href="#" th:href="@{/roomManagement/1}" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>View Rooms</a>
+</div> 
+
+
+<a onclick="myAccFunc2()" href="javascript:void(0)" class="w3-button w3-block w3-left-align" id="myBtn2">
+Booking <i class="fa fa-caret-down"></i>
+</a>
+<div id="demoAcc2" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+<a th:href="@{/allBookingReq}" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>All Request</a>
+
+</div>
+
+
+
+<a onclick="myAccFunc3()" href="javascript:void(0)" class="w3-button w3-block w3-left-align" id="myBtn3">
+PM Request <i class="fa fa-caret-down"></i>
+</a>
+<div id="demoAcc3" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+<a href="#" th:href="@{/allDeptReqPm}" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Department Request</a>
+<a href="#" th:href="@{/allMailRequest}" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Email Request</a>
+
+</div>
+<a onclick="myAccFunc4()" href="javascript:void(0)" class="w3-button w3-block w3-left-align" id="myBtn4">
+Feedback <i class="fa fa-caret-down"></i>
+</a>
+<div id="demoAcc4" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+<a th:href="@{/viewAllFeedback}" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>View Feedback</a>
+
+
+</div>
+<a class="w3-button w3-block w3-left-align"href="#" th:href="@{/logout}"><font color="black">Logout</a>
+</font>
+</div>
+
+</nav>
+
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<div class="w3-main" style="margin-left:250px">
+
+<div class="w3-hide-large" style="margin-top:83px"></div>
+
+
+<header class="w3-container w3-xlarge" style="background-color:#337ab7">
+<p class="w3-left"><a th:text="${name}"></a>Welcome Admin</p>
+
+<p class="w3-right">
+
+
+<a href="#" th:href="@{/adminProfile}" class="profile"><i class="fas fa-user-edit "></i></a>
+<!-- <a href="#" class="notification"><i class="fa fa-bell" style="font-size:25px"></i>
+
+<span class="badge" th:text="${count}"></span>
+</a>
+ --><!-- <a href="logout" class="logshubhu"><i class="fa fa-sign-out" style="font-size:30px"></i></a> -->
+</p>
+</header>
+
+</div>
+
+
+<script>
+//Accordion 
+function myAccFunc() {
+var x = document.getElementById("demoAcc");
+if (x.className.indexOf("w3-show") == -1) {
+x.className += " w3-show";
+} else {
+x.className = x.className.replace(" w3-show", "");
+}
+}
+
+// Click on the "Jeans" link on page load to open the accordion for demo purposes
+document.getElementById("myBtn").click();
+
+
+// Accordion 
+function myAccFunc1() {
+var x = document.getElementById("demoAcc1");
+if (x.className.indexOf("w3-show") == -1) {
+x.className += " w3-show";
+} else {
+x.className = x.className.replace(" w3-show", "");
+}
+}
+
+// Click on the "Jeans" link on page load to open the accordion for demo purposes
+document.getElementById("myBtn1").click();
+
+
+
+// Accordion 
+function myAccFunc2() {
+var x = document.getElementById("demoAcc2");
+if (x.className.indexOf("w3-show") == -1) {
+x.className += " w3-show";
+} else {
+x.className = x.className.replace(" w3-show", "");
+}
+}
+
+// Click on the "Jeans" link on page load to open the accordion for demo purposes
+document.getElementById("myBtn2").click();
+
+
+
+// Accordion 
+function myAccFunc3() {
+var x = document.getElementById("demoAcc3");
+if (x.className.indexOf("w3-show") == -1) {
+x.className += " w3-show";
+} else {
+x.className = x.className.replace(" w3-show", "");
+}
+}
+
+// Click on the "Jeans" link on page load to open the accordion for demo purposes
+document.getElementById("myBtn3").click();
+
+//Accordion 
+function myAccFunc4() {
+var x = document.getElementById("demoAcc4");
+if (x.className.indexOf("w3-show") == -1) {
+x.className += " w3-show";
+} else {
+x.className = x.className.replace(" w3-show", "");
+}
+}
+
+// Click on the "Jeans" link on page load to open the accordion for demo purposes
+document.getElementById("myBtn4").click();
+
+
+
+// Open and close sidebar
+function w3_open() {
+document.getElementById("mySidebar").style.display = "block";
+document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+document.getElementById("mySidebar").style.display = "none";
+document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+
+</html>

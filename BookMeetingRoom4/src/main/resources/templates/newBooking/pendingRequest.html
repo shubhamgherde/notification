@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="headerfiles">
+
+<meta charset="UTF-8" />
+
+<link th:href="@{/tableFormat.css}" rel="stylesheet">
+<style>
+.main{
+margin-left:50px;
+}
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: #111;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"> </script>
+<script type="text/javascript">
+function idForm(){
+var selectvalue = $('input[name=choice]:checked', '#idForm').val();
+
+
+if(selectvalue == "All"){
+window.open('allBookingReq','_self');
+return true;
+}
+else if(selectvalue == "Pending"){
+window.open('/pendingRequest','_self');
+return true;
+}else if(selectvalue == 'Confirm'){
+window.open('/confirmRequest','_self');
+return true;
+}else if(selectvalue == 'Cancel'){
+window.open('cancelRequest','_self');
+return true;
+}
+return false;
+};
+
+
+</script>
+</head>
+<body>
+	<div th:insert="adminHome"></div>
+
+	<div class="main" align="center">
+
+
+		<h3>Pending Request</h3>
+
+
+<form id="idForm"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="All"/>All &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="Pending"/>Pending &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="Confirm"/>Confirm &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="Cancel"/>Cancel &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</form>
+
+		    
+		<table border="1">
+			        
+			<thead>
+				            
+				<tr>
+					                
+					<th>Booking_ID</th>                 
+					<th>User Email</th>
+					<th>Room Name</th>                 
+				    <th>Start Date Time</th>
+                <th>End Date Time</th>            
+					
+
+
+					<th>Action</th>             
+				</tr>
+				        
+			</thead>
+
+			<tbody>
+				<tr th:each="roomRequest :${listRoom}">
+					<td th:text="${roomRequest.booking_id}">ID</td>
+					<td th:text="${roomRequest.user_mail}">User Email</td>
+					<td th:text="${roomRequest.room_name}">Room Name</td>
+					<td th:text="${roomRequest.bookingDateFrom}">Start date</td>
+		<td th:text="${roomRequest.bookingDateTo}">End Date</td>
+					
+
+					<td><a
+						th:href="@{'/confirmRequest/' + ${roomRequest.booking_id} + '/' + ${roomRequest.id}}" onclick="return confirm('want to confirm ?');">Confirm</a>
+
+						<a
+						th:href="@{'/cancelRequest/' + ${roomRequest.booking_id} + '/' + ${roomRequest.id}}" onclick="return confirm('want to cancel ?');">Cancel</a>
+
+					</td>
+
+
+
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+</body>
+</html>

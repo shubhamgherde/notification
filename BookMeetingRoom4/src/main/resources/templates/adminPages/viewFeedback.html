@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="headerfiles">
+<title>Introduction to SpringBoot Security</title>
+<meta charset="UTF-8" />
+
+<link th:href="@{/tableFormat.css}" rel="stylesheet">
+<style>
+.main{
+margin-left:50px;
+}
+
+.pagination {
+	display: inline-block;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+}
+
+.pagination a.active {
+	background-color: #4CAF50;
+	color: white;
+	border-radius: 5px;
+}
+
+.pagination a:hover:not (.active ) {
+	background-color: #ddd;
+	border-radius: 5px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"> </script>
+<script type="text/javascript">
+function idForm(){
+var selectvalue = $('input[name=choice]:checked', '#idForm').val();
+
+
+if(selectvalue == "All"){
+window.open('viewAllFeedback','_self');
+return true;
+}
+else if(selectvalue == "Pending"){
+window.open('/viewRespondFeedback','_self');
+return true;
+}else if(selectvalue == 'Confirm'){
+window.open('/viewNotRespondFeedback','_self');
+return true;
+}
+return false;
+};
+
+
+</script>
+
+
+</head>
+<body>
+	<div th:insert="adminHome"></div>    
+	<div class="main" align="center">
+	<h3>Feedback</h3>
+			    <br />
+			<form id="idForm"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="All"/>All &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="Pending"/>Responded &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="Confirm"/>Not Respond &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</form>
+		<br />     
+		<table border="1" cellpadding="10">
+			        
+			<thead>
+				            
+				<tr>
+					               
+					<th> ID</th>                 
+					<th>User_Mail</th>                 
+					<th>Feedback</th>   
+					   
+					             
+				</tr>
+				        
+			</thead>
+			<tbody>
+				<tr th:each="emp :${list}">
+
+					<td th:text="${emp.id}">ID</td>
+					<td th:text="${emp.email}">User_Mail</td>
+					<td th:text="${emp.comment}">Comment</td>
+					
+					
+					
+					
+
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+</body>
+</html>

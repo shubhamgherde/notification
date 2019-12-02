@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="headerfiles">
+
+<meta charset="UTF-8" />
+
+<style>
+#main {
+	width: 700px;
+	height: 550px; /
+	display: -webkit-flex; / Safari */ / -webkit-align-items : center; /
+	Safari 7.0+ */ display : flex;
+	align-items: center;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+	width: 120%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	resize: vertical;
+}
+
+label {
+	padding: 12px 12px 12px 0;
+	display: inline-block;
+}
+
+input[type=submit] {
+	background-color: #4CAF50;
+	color: white;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	position: relative;
+	left: 240px; //
+	float: center;
+}
+
+input[type=submit]:hover {
+	background-color: #45a049;
+}
+</style>
+
+
+
+</head>
+<body >
+	<div th:insert="pmPages/pmHomeForAll"></div> 
+	
+
+	<div align="center">
+		   
+		<ol>
+			<li>
+				<h4>
+					<b>Feedback</b>
+				</h4>
+			</li>
+		</ol>
+		    <br />  
+		<form id="main" action="#" th:action="@{/saveFeedbackPm}"
+			th:object="${feedback}" method="post">
+
+			<table border="0">
+
+				<tr>
+					<td>Email Id :</td>
+					<td><p th:name="email"
+							th:text="${#httpServletRequest.remoteUser}" readonly="readonly" />
+					<td><input type="hidden" th:name="email"
+						th:value="${#httpServletRequest.remoteUser}" readonly="readonly" />
+
+					</td>
+
+
+					</td>
+				</tr>
+
+
+				<tr>
+					<td>Enter Your Feedback:</td>
+					<td><textarea rows="4" cols="50" th:name="comment"></textarea></td>
+				</tr>
+								<tr>
+					                    
+					<td colspan="2"><button type="submit"
+							onclick="return alert('Request has been submitted ');">SUBMIT</button></td>
+					                
+				</tr>
+
+			</table>
+		</form>
+
+
+	</div>
+</body>
+</html>

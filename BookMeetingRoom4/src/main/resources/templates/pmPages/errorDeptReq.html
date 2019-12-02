@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<title>CSS Template</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"> </script>
+<script type="text/javascript">
+function idForm(){
+var selectvalue = $('input[name=choice]:checked', '#idForm').val();
+
+
+if(selectvalue == "All"){
+	window.open('allDeptReqFromTl','_self');
+	return true;
+	}
+	else if(selectvalue == "Pending"){
+	window.open('/pendingDeptReqFromTl','_self');
+	return true;
+	}else if(selectvalue == 'Confirm'){
+	window.open('/confirmDeptReqFromTl','_self');
+	return true;
+	}else if(selectvalue == 'Cancel'){
+	window.open('cancelDeptReqFromTl','_self');
+	return true;
+	}
+	return false;
+	};
+
+
+
+</script>
+
+</head>
+<body>
+	<div th:insert="pmPages/pmHomeForAll"></div>
+	
+	<div class="main" align="center" id="content">
+	<h3><p th:text=${message}/></h3>
+	<br />
+		<center>
+			<div>
+			<form id="idForm"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="All"/>All &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="Pending"/>Pending &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="Confirm"/>Confirm &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="Cancel"/>Cancel &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</form>
+			
+				         <br />      
+				<table border="1" cellpadding="10">
+					        
+					<thead>
+						<tr>
+							               
+<!-- 							<th style="visibility:hidden;">Id</th>                 
+ -->							<th>User_Mail</th>                 
+							<th>Old Department</th>
+							<th>New_Department</th>                                
+							<th>Status</th>                 
+						</tr>
+						        
+					</thead>
+					<tbody>
+						<tr><td colspan="4" align="center">NO REQUEST</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</center>
+</body>
+</html>

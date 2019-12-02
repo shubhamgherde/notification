@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link th:href="@{/tableFormat.css}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.main{
+margin-left:50px;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #337ab7;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  min-width: 160px;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+ol li{
+  list-style-type: none;
+  
+}
+</style>
+
+</head>
+<body>
+
+	<div th:insert="pmPages/pmHomeForAll"></div>
+
+<div class="main" align="center">
+    <h1>All Rooms</h1>
+    <br/><br/>
+    <table border="1" >
+        <thead>
+            <tr>
+<th style="visibility:hidden;">ID</th> 
+                <th>Room_Name</th>
+                <th>Location</th>
+       		    <th>Facility</th>
+            </tr>
+        </thead>
+ <tbody>
+	<tr th:each="room :${list}">
+	<td style="visibility:hidden;" th:text="${room.id}">ID</td>
+	
+		
+		<td th:text="${room.room_name}">Name</td>
+		<td th:text="${room.location}">Email</td>
+		<td th:text="${room.facility}">Facility</td>
+		
+	</tr>
+</tbody> 
+  
+ </table>
+ </div>
+
+</body>
+</html>

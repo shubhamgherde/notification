@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<style>
+#main {
+width: 550px;
+height: 550px; /
+display: -webkit-flex; / Safari */ / -webkit-align-items : center; /
+Safari 7.0+ */ display : flex;
+align-items: center;
+
+}
+
+</style>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div th:insert="adminHome"></div>
+
+<center>
+
+<br>
+
+<div id="main">
+
+<form action="#" th:action="@{/sendReply}"
+th:object="${feedback}" method="post">
+
+<table border="4" cellpadding="10">
+
+				<tr>
+					<td>Message From :<p th:name="user_mail"
+							th:text="${#httpServletRequest.remoteUser}" readonly="readonly" />
+
+<tr>
+<td>Message To :<p th:text="${email}"  readonly="readonly" />
+<input type="hidden" th:name=email th:value="${email}"> 
+</td>
+
+
+
+</tr>
+<tr>
+<td>Enter Message:<br>
+<textarea rows="3" cols="50" th:name=reply></textarea>
+</td>
+</tr>
+<tr>
+                    
+<td colspan="2"><button type="submit"
+onclick="return alert('Request has been submitted ?');">Send</button></td>
+                
+</tr>
+
+</table>
+</form>
+</div>
+</center>
+</body>
+</html>

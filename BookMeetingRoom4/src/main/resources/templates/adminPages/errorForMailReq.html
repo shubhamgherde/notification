@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link th:href="@{/tableFormat.css}" rel="stylesheet">
+<style>
+.main{
+margin-left:50px;
+}
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"> </script>
+<script type="text/javascript">
+function idForm(){
+var selectvalue = $('input[name=choice]:checked', '#idForm').val();
+
+
+if(selectvalue == "All"){
+window.open('allMailRequest','_self');
+return true;
+}
+else if(selectvalue == "Pending"){
+window.open('/pendingMailRequest','_self');
+return true;
+}else if(selectvalue == 'Confirm'){
+window.open('/confirmMailRequest','_self');
+return true;
+}else if(selectvalue == 'Cancel'){
+window.open('cancelMailRequest','_self');
+return true;
+}
+return false;
+};
+
+
+</script>
+
+</head>
+<body>
+
+<div th:insert="adminHome"></div>
+  
+  <div class="main" align="center">
+  <h3><p th:text="${message}"/></h3>
+  <form id="idForm"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="All"/>All &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="Pending"/>Pending &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="Confirm"/>Confirm &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="Cancel"/>Cancel &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</form>
+
+		    <br />
+		<br />     
+	
+    <table border="1" >
+        <thead>		
+            <tr>
+					               
+					<th>Request ID</th>                 
+					<th>User_mail</th>                 
+					<th>New_User_mail</th>                 
+					<th>Confirm</th>                 
+					<th>Cancel</th>             
+				</tr>
+        </thead>
+
+<tbody>
+<tr>
+
+		<td colspan="5" align="center">NO REQUEST</td>
+		
+			
+	</tr>
+</tbody> 
+ 
+ </table>
+ </div>
+</body>
+</html>

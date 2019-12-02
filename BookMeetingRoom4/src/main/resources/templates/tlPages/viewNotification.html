@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+
+.pointer {
+      cursor: pointer;
+      }
+      tr:hover {
+      background-color: #ccc;
+      }
+
+</style>
+<body>
+		<div th:insert="tlPages/tlHomeForAll"></div>
+
+<center>
+
+
+
+ <table style="color:blue;" border="0" >
+       
+	
+ 
+       
+ 
+	<tr class="pointer" onclick="window.open('/pendingMailRequser','self')" th:each="list :${listMail}">
+						<td th:text="${list.id}"></td>
+		
+		<td th:text="${list.mail}" ></td><td>has made request for</td>
+ 		<td th:text="${list.type}"></td>
+ 		
+		
+	</tr>
+       
+	<tr class="pointer" onclick="window.open('/pendingDeptRequser','self')" th:each="list :${listDept}">
+					<td th:text="${list.id}"></td>
+	
+		<td th:text="${list.mail}"></td><td>has made request for</td>
+ 		<td th:text="${list.type}"></td>
+		
+	</tr>
+	
+	<tr style="color:red;" onclick="window.open('/pendingMailRequser','self')" th:each="list :${oldMail}">
+					<td th:text="${list.id}"></td>
+	
+		<td th:text="${list.mail}"></td><td>has made request for</td>
+ 		<td th:text="${list.type}"></td>
+		
+	</tr>
+	
+	
+	<tr style="color:red;" onclick="window.open('/pendingDeptRequser','self')" th:each="list :${oldDept}">
+					<td th:text="${list.id}"></td>
+	
+		<td th:text="${list.mail}"></td><td>has made request for</td>
+ 		<td th:text="${list.type}"></td>
+		
+	</tr>
+	
+</tbody> 
+</table> 
+ </center>
+ 
+ 
+</body>
+</html>

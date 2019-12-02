@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="headerfiles">
+<title>Introduction to SpringBoot Security</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+
+.w3-button {width:200px;}
+
+.ff{
+
+font-family:sans-serif;
+font-size:20px;
+
+}
+
+.card {
+box-shadow: 80px 81px 8px 0 rgba(0, 0, 0, 0.2);
+max-width: 550px;
+margin: auto;
+text-align: center;
+font-family: arial;
+background-color:#fff2e6;
+border-style: double;
+}
+
+.main{
+
+min-height:100px;
+min-width:100px;
+
+
+}
+/* 
+.title {
+color: grey;
+font-size: 18px;
+}
+
+
+* {
+box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+width: 300%;
+padding: 0px;
+border: 1px solid #ccc;
+border-radius: 4px;
+
+}
+
+label {
+padding: 12px 12px 12px 0;
+display: inline-block;
+}
+
+input[type=submit] {
+background-color: #4CAF50;
+color: white;
+padding: 12px 20px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+position: relative;
+left: 240px; //
+float: center;
+}
+
+input[type=submit]:hover {
+background-color: #45a049;
+} */
+</style>
+</head>
+
+<body>
+	<div th:insert="pmPages/pmHomeForAll"></div>
+
+<br>
+<br>
+<center>
+
+<div class="card" >
+
+
+
+<div class="main">
+
+<form id="main" th:object="${userProfile}"
+method="post">
+
+
+<table border="0">
+
+<tr>
+<td style="color:blue";>Email Id :</td>
+<td><p th:name="user_mail"
+th:text="${#httpServletRequest.remoteUser}" readonly="readonly" />
+
+</td>
+<td><a href="#" th:href="@{/Change_emailPm}" ><i class="fa fa-edit" style="font-size:24px"></i></a></td>
+
+</tr>
+<tr>
+<td style="color:blue";>Name :</td>
+<td><p th:text="*{name}" readonly="readonly" /></td>
+</tr>
+<tr>
+<td style="color:blue";>Department :</td>
+<td><p th:text="*{department}" readonly="readonly" /></td>
+<td><a href="#" th:href="@{/Change_deptPm}"><i class="fa fa-edit" style="font-size:24px"></i></a></td>
+
+</tr>
+
+<tr>
+<td style="color:blue";>Role :</td>
+<td><p th:text="*{roles}" readonly="readonly" /></td>
+</tr>
+
+<!-- <tr>
+<td style="color:blue";>TL Name :</td>
+<td><p th:text="${tlName}" readonly="readonly" /></td>
+</tr>
+ -->
+</table>
+</form>
+</div>
+
+</div>
+
+</center>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

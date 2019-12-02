@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link th:href="@{/tableFormat.css}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.main{
+margin-left:50px;
+}
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"> </script>
+
+<script type="text/javascript">
+function idForm(){
+var selectvalue = $('input[name=choice]:checked', '#idForm').val();
+
+
+if(selectvalue == "All"){
+window.open('AllStatusPm','_self');
+return true;
+}
+else if(selectvalue == "Pending"){
+window.open('/pendingStatusPm','_self');
+return true;
+}else if(selectvalue == 'Confirm'){
+window.open('/confirmStatusPm','_self');
+return true;
+}else if(selectvalue == 'Cancel'){
+window.open('/cancelStatusPm','_self');
+return true;
+}
+return false;
+};
+
+
+</script>
+</head>
+<body>
+
+<div th:insert="pmPages/pmHomeForAll"></div>
+<div class="main" align="center">
+<h3><p th:text="${message}"/></h3></li>
+
+<form id="idForm"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="All"/>All &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="Pending"/>Pending &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="Confirm"/>Confirm &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="Cancel"/>Cancel &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</form>
+	
+			<div class="main" align="center">
+
+		    
+	<table border="1">
+			        
+			<thead>
+				            
+				<tr>
+					                
+<!-- 					<th style="visibility:hidden;">ID</th>                
+ -->					
+ 					<th>ID</th>
+ 					<th>Room Name</th>                 
+					<th>Start Date Time</th>                 
+					<th>End Date Time</th>          
+					<th>Status</th>             
+				</tr>
+				        
+			</thead>
+
+		<td colspan="5" align="center">NO REQUEST</td>
+ 
+ </table>
+ </div>
+</body>
+</html>

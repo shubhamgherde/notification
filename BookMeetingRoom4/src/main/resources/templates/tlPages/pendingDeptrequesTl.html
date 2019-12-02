@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<title>CSS Template</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"> </script>
+<script type="text/javascript">
+function idForm(){
+var selectvalue = $('input[name=choice]:checked', '#idForm').val();
+
+
+if(selectvalue == "All"){
+	window.open('allDeptRequser','_self');
+	return true;
+	}
+	else if(selectvalue == "Pending"){
+	window.open('/pendingDeptRequser','_self');
+	return true;
+	}else if(selectvalue == 'Confirm'){
+	window.open('/confirmDeptRequser','_self');
+	return true;
+	}else if(selectvalue == 'Cancel'){
+	window.open('cancelDeptRequser','_self');
+	return true;
+	}
+	return false;
+	};
+
+
+
+</script>
+</head>
+<body>
+	<div th:insert="tlPages/tlHomeForAll"></div>
+	<center>
+	<div class="main" id="content">
+	<h3>Pending Department Request</h3>
+		
+		<form id="idForm"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="All"/>All &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="Pending"/>Pending &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="Confirm"/>Confirm &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="radio" onclick="idForm()" name="choice" value="Cancel"/>Cancel &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</form>
+			
+			<div>
+				         <br /> <br />     
+				<table border="0" cellpadding="10">
+					        
+					<thead>
+						<tr>
+							               
+							<th style="visibility:hidden;">Id</th>                 
+							<th>User_Mail</th>                 
+							<th>Old Department</th>
+							<th>New_Department</th>                                
+							<th>Confirm</th>                 
+							<th>Cancel</th>             
+						</tr>
+						        
+					</thead>
+					<tbody>
+						<tr th:each="emp :${deptRequest}">
+	
+							<td style="visibility:hidden;" th:text="${emp.id}">	Request Id</td>
+							<td th:text="${emp.user_mail}">User Mail</td>
+							<td th:text="${emp.department}">Old Department</td>
+							<td th:text="${emp.new_department}">New Department</td>
+							<td><a
+								th:href="@{'/changeConfirmdeptuser/' + ${emp.id}}"
+								onclick="return confirm('want to confirm ?');">Confirm</a></td>
+							<td><a
+								th:href="@{'/changeCancelDeptuser/' + ${emp.id} }"
+								onclick="return confirm('want to cancel ?');">Cancel</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</center>
+</body>
+</html>
